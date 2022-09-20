@@ -33,3 +33,38 @@ Authentication accepts api request.
 post **/user/login**
 
 When the **/user/login** enpoint hits, it calls **"logLogin"** rpc and write log in mongodb by broker service.
+
+If you want to write cutom database functions, u can add model/usermodel.go
+
+Example:
+
+Add **FindAll** method in UserModel interface
+
+````
+```
+	UserModel interface {
+		userModel
+		FindAll(ctx context.Context) ([]*User, error)
+	}
+```
+````
+
+Implement **FindAll** funtionin the same file.
+
+````
+```
+func (m *customUserModel) FindAll(ctx context.Context) ([]*User, error) {
+	var resp = []*User{}
+
+	err := m.QueryRowsNoCacheCtx(ctx, &resp, "SELECT * FROM `user`;")
+	switch err {
+	case nil:
+		return resp, nil
+	case sqlc.ErrNotFound:
+		return nil, ErrNotFound
+	default:
+		return nil, err
+	}
+}
+```
+````
