@@ -1,6 +1,22 @@
 # zero-strange
 ![image](https://user-images.githubusercontent.com/112534208/191252324-33debe57-887a-4eb1-8123-3e83edaaec2d.png)
 
+**REQUIREMENTS**: etcd, redis-server running
+
+Redis is required cause of database model **embed** cache as default behaviour. 
+You can see in generated usermodel_gen.go.
+
+````
+```
+	defaultUserModel struct {
+		sqlc.CachedConn
+		table string
+	}
+
+```
+````
+
+
 There are two services. Authentication and Broker.
 
 Both services use mysql for user data.
