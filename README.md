@@ -7,13 +7,10 @@ Redis is required cause of database model **embed** cache as default behaviour.
 You can see in generated usermodel_gen.go.
 
 ````
-```
 	defaultUserModel struct {
 		sqlc.CachedConn
 		table string
 	}
-
-```
 ````
 
 
@@ -57,18 +54,15 @@ Example:
 Add **FindAll** method in UserModel interface
 
 ````
-```
 	UserModel interface {
 		userModel
 		FindAll(ctx context.Context) ([]*User, error)
 	}
-```
 ````
 
 Implement **FindAll** funtionin the same file.
 
 ````
-```
 func (m *customUserModel) FindAll(ctx context.Context) ([]*User, error) {
 	var resp = []*User{}
 
@@ -82,5 +76,4 @@ func (m *customUserModel) FindAll(ctx context.Context) ([]*User, error) {
 		return nil, err
 	}
 }
-```
 ````
