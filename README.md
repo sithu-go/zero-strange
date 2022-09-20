@@ -9,18 +9,18 @@ broker use mongo for writing log.
 Broker Service
 Broker accepts rpc and api requests.
 api
-get /v2/users
-post /v2/users/
-get /v2/users/:id
+get **/v2/users**
+post **/v2/users/**
+get **/v2/users/:id**
 
 rpc
-write log of Login from authentication service with method "logLogin"
+write log of Login from authentication service with method **"logLogin"**
 
 
 Authentication Service
 
 Authentication accepts api request.
 api
-post /user/login
+post **/user/login**
 
-When the /user/login enpoint hits, it calls "logLogin" rpc and write log in mongodb by broker service.
+When the **/user/login** enpoint hits, it calls **"logLogin"** rpc and write log in mongodb by broker service.
