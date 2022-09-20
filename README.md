@@ -4,6 +4,7 @@
 There are two services. Authentication and Broker.
 
 Both services use mysql for user data.
+
 broker use mongo for writing log.
 
 **Broker Service**
@@ -19,6 +20,7 @@ get **/v2/users/:id**
 
 
 **RPC**
+
 write log of Login from authentication service with method **"logLogin"**
 
 
@@ -27,6 +29,7 @@ write log of Login from authentication service with method **"logLogin"**
 Authentication accepts api request.
 
 **api**
+
 post **/user/login**
 
 When the **/user/login** enpoint hits, it calls **"logLogin"** rpc and write log in mongodb by broker service.
