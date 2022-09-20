@@ -1,0 +1,40 @@
+type (
+	// UserReq {
+	// 	Username string `json:"username"`
+	// }
+	UserCreateReq {
+		Username string `json:"username"`
+		Name     string `json:"name"`
+		Gender   string `json:"gender"`
+	}
+	UserReply {
+		Id        int64  `json:"id"`
+		Username  string `json:"username"`
+		Name      string `json:"name"`
+		Gender    string `json:"gender"`
+		CreatedAt string `json:"created_at"`
+		UpdatedAt string `json:"updated_at"`
+	}
+)
+
+service user-api {
+	@doc "users"
+	@handler getusers
+	get /v1/users returns ([]UserReply)
+}
+
+service user-api {
+	@doc "users"
+	@handler getuser
+	get /v1/users/:username () returns (UserReply)
+}
+
+@server(
+	jwt: Auth
+)
+
+service user-api {
+	@doc "users"
+	@handler createuser
+	post /v1/users (UserCreateReq) returns (UserReply)
+}
