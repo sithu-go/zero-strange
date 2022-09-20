@@ -32,11 +32,8 @@ func NewUserModel(conn sqlx.SqlConn, c cache.CacheConf) UserModel {
 
 func (m *customUserModel) FindAll(ctx context.Context) ([]*User, error) {
 	var resp = []*User{}
-	// var userBuilderQueryRows = strings.Join(builder.RawFieldNames(&User{}), ",")
-	// var userBuilderQueryRows = "'id', 'userna'"
-	// fmt.Println(userBuilderQueryRows, "JJJ")
-
 	err := m.QueryRowsNoCacheCtx(ctx, &resp, "SELECT * FROM `user`;")
+
 	switch err {
 	case nil:
 		return resp, nil
