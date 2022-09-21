@@ -6,12 +6,12 @@
 Redis is required cause of database model **embed** cache as default behaviour. 
 You can see in generated usermodel_gen.go.
 
-````
+```go
 	defaultUserModel struct {
 		sqlc.CachedConn
 		table string
 	}
-````
+```
 
 
 There are two services. Authentication and Broker.
@@ -53,16 +53,16 @@ Example:
 
 Add **FindAll** method in UserModel interface
 
-````
+```go
 	UserModel interface {
 		userModel
 		FindAll(ctx context.Context) ([]*User, error)
 	}
-````
+```
 
 Implement **FindAll** funtionin the same file.
 
-````
+```go
 func (m *customUserModel) FindAll(ctx context.Context) ([]*User, error) {
 	var resp = []*User{}
 
@@ -76,4 +76,4 @@ func (m *customUserModel) FindAll(ctx context.Context) ([]*User, error) {
 		return nil, err
 	}
 }
-````
+```
